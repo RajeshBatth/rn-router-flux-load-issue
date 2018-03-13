@@ -1,31 +1,33 @@
 package com.routerissue;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-import com.facebook.react.ReactActivity;
-import com.facebook.react.ReactActivityDelegate;
+public class MainActivity extends AppCompatActivity {
 
-import javax.annotation.Nullable;
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_home);
+    findViewById(R.id.btn_1).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        openPage("one");
+      }
+    });
+    findViewById(R.id.btn_2).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        openPage("two");
+      }
+    });
+  }
 
-public class MainActivity extends ReactActivity {
-
-    /**
-     * Returns the name of the main component registered from JavaScript.
-     * This is used to schedule rendering of the component.
-     */
-    @Override
-    protected String getMainComponentName() {
-        return "routerissue";
-    }
-
-    @Override
-    protected ReactActivityDelegate createReactActivityDelegate() {
-        return new ReactActivityDelegate(this, getMainComponentName()){
-            @Nullable
-            @Override
-            protected Bundle getLaunchOptions() {
-                return getIntent().getExtras();
-            }
-        };
-    }
+  private void openPage(String page) {
+    final Intent intent = new Intent(MainActivity.this, MyReactActivity.class);
+    intent.putExtra("page", page);
+    startActivity(intent);
+  }
 }

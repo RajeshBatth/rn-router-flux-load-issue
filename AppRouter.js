@@ -5,7 +5,7 @@ import {Router, Scene, Stack} from 'react-native-router-flux'
 import {Screen1, Screen2} from "./Screens";
 
 const AppRouter = (props) => {
-console.log('props',props)
+console.log('AppRouter.props',props)
   return (
     <View style={{flexDirection: 'column', flex: 1, backgroundColor:'yellow'}}>
 
